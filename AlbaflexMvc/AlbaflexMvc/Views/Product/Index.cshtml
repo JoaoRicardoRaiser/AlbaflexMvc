@@ -1,0 +1,65 @@
+﻿@using AlbaflexMvc.Data.Entities
+@model List<Product>
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Produtos</h1>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Product" asp-action="Create"> Adicionar produto </a>
+    </div>
+    
+    <br />
+
+    @if(TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert" id="demo">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Fechar">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SucessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert" id="demo">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Fechar">X</button>
+            @TempData["SucessMessage"]
+        </div>
+    }
+    
+    <br />
+
+    <table class="table table-striped table-hover" id="products-table">
+        <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Tipo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Any())
+            {
+                foreach (var product in Model)
+                {
+                    <tr>
+                        <td scope="row">@product.Code</td>
+                        <td>@product.Description</td>
+                        <td>@product.Value</td>
+                        <td>@product.Type</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-code="@product.Code">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-controller="Product" asp-action="DeleteConfirmation" asp-route-code="@product.Code">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

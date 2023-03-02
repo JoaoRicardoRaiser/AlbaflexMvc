@@ -1,0 +1,13 @@
+﻿@model ProductInputModel
+@{
+    ViewData["Title"] = "Confirmação Deletar Produto";
+}
+
+<div class="text-center">
+    <h3>Deseja realmente deletar o produto @Model.Description</h3>
+</div>
+<br />
+<div class="d-grid gap-2">
+    <a class="btn btn-primary" role="button" asp-controller="Product" asp-action="Index">Cancelar</a>
+    <a class="btn btn-danger" role="button" asp-controller="Product" asp-action="Delete" asp-route-code=@Model.Code>Confirmar</a>
+</div>

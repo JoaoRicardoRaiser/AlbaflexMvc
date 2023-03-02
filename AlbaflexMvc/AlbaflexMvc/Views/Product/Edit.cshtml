@@ -1,0 +1,43 @@
+﻿@model ProductInputModel
+@{
+    ViewData["Title"] = "Editar Produto";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Editar Produto</h1>
+</div>
+
+<form asp-controller="Product" asp-action="Edit" method="post">
+    
+    <input type="hidden" asp-for=Code/>
+    <div class="from-group">
+        <label for="code">Código</label>
+        <input type="number" asp-for=Code class="form-control" disabled="true">
+    </div>
+    <br />
+    <div class="from-group">
+        <label for="description">Descrição</label>
+        <input type="text" asp-for=Description class="form-control" placeholder="Descrição do produto">
+        @Html.ValidationMessageFor(x => x.Description)
+    </div>
+    <br />
+    <div class="from-group">
+        <label for="value">Valor</label>
+        <input type="number" asp-for=Value class="form-control" placeholder="Valor do produto">
+        @Html.ValidationMessageFor(x => x.Value)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="type" asp-for=Type>Tipo Produto</label>
+        <select class="form-select" disabled="true">
+            <option value="1">Tecido</option>
+            <option value="2">Material</option>
+        </select>
+    </div>
+    <br />
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a class="btn btn-secondary" role="button" asp-controller="Product" asp-action="Index">Voltar</a>
+    </div>
+</form>
+

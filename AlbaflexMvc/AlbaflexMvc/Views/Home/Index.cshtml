@@ -1,0 +1,68 @@
+﻿@using AlbaflexMvc.CrossCutting.Enum
+@using AlbaflexMvc.Data.Entities
+@using System.Collections
+@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem vindo</h1>
+    <p>Albaflex Persianas</p>
+</div>
+
+<form>
+    <table class="table table-striped table-hover" id="budget-table">
+        <thead>
+            <tr>
+                <th scope="col">Largura</th>
+                <th scope="col">Altura</th>
+                <th scope="col">Tecido</th>
+                <th scope="col">Bandô</th>
+                <th scope="col">Caixa Box</th>
+                <th scope="col">Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">
+                    <label for="width" hidden="hidden"></label>
+                    <input type="text" class="form-control measurement" placeholder="Largura" aria-label="Largura" id="budget-width">
+                </td>
+                <td scope="row">
+                    <div class="col">
+                        <label for="height" hidden="hidden"></label>
+                        <input type="text" for class="form-control measurement" placeholder="Altura" aria-label="Altura" id="budget-height">
+                    </div>
+                </td>
+                <td scope="row">
+                    <div class="col">
+                        <label for="tissue" hidden="hidden"></label>
+                        <select class="form-select" asp-items="(@ViewData["Tissues"] as IEnumerable<SelectListItem>)">
+                        </select>
+                    </div>
+                </td>
+                <td scope="row">
+                    <div class="col">
+                        <label for="material" hidden="hidden"></label>
+                        <select class="form-select" asp-items="@ViewData["Materials"] as IEnumerable<SelectListItem>">
+                        </select>
+                    </div>
+                </td>
+
+                <td scope="row">
+                    <div class="col">
+                        <label for="caixaBox" hidden="hidden"></label>
+                        <select class="form-select" asp-items="@ViewData["CaixaBox"] as IEnumerable<SelectListItem>">
+                        </select>
+                    </div>
+                </td>
+
+                <td scope="row">
+                    <div class="col">
+                        <input type="text" for class="form-control" placeholder="Preço" aria-label="Preço" id="blind-price" disabled="true">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

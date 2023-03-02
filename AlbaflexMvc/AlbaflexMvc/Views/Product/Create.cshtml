@@ -1,0 +1,41 @@
+﻿@using AlbaflexMvc.CrossCutting.Enum
+@model ProductInputModel
+@{
+    ViewData["Title"] = "Cadastrar Produto";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Cadastrar Produto</h1>
+</div>
+
+<form asp-controller="Product" asp-action="Create" method="post">
+    <div class="from-group">
+        <label for="code">Código</label>
+        <input type="number" asp-for=Code class="form-control" placeholder="1000">
+        @Html.ValidationMessageFor(x => x.Code)
+    </div>
+    <br />
+    <div class="from-group">
+        <label for="description">Descrição</label>
+        <input type="text" asp-for=Description class="form-control" placeholder="Descrição do produto">
+        @Html.ValidationMessageFor(x => x.Description)
+    </div>
+    <br />
+    <div class="from-group">
+        <label for="value">Valor</label>
+        <input type="number" asp-for=Value class="form-control" placeholder="Valor do produto">
+        @Html.ValidationMessageFor(x => x.Value)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="type">Tipo Produto</label>
+        <select class="form-select" asp-for=Type
+                asp-items="Html.GetEnumSelectList<ProductType>()">
+        </select>
+    </div>
+    <br />
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary d-grid gap-2">Aicionar</button>
+        <a class="btn btn-secondary d-grid gap-2" role="button" asp-controller="Product" asp-action="Index">Voltar</a>
+    </div>
+</form>
